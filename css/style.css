@@ -1,0 +1,60 @@
+
+body {
+    background-image: url('../images/background.jpg'); /* Replace with your background image path */
+    background-color: #f0f8ff; /* Fallback color */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding-bottom: 70px;
+}
+
+
+.footer {
+    background-color: rgba(248, 249, 250, 0.9) !important; /* Slightly transparent light background */
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar {
+     background-color: rgba(255, 255, 255, 0.95) !important; /* Slightly transparent white */
+     box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar-brand img {
+    max-height: 40px;
+    margin-right: 10px;
+}
+
+.user-display {
+    font-weight: bold;
+    color: #0d6efd; 
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent card background */
+    border: none;
+}
+
+.card-header {
+     background-color: rgba(13, 110, 253, 0.8) !important; /* Primary color, slightly transparent */
+     color: white;
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px; 
+}
+
+h2, h3, h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
