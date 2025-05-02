@@ -1,3 +1,16 @@
+<?php if (!empty($error_msg)): ?>
+<div class="alert alert-danger" role="alert">
+    <?php echo $error_msg; ?>
+    
+    <!-- Debug info -->
+    <?php if (isset($_SESSION['debug_info'])): ?>
+    <div class="mt-2 small">
+        <strong>Debug Info:</strong> <?php echo $_SESSION['debug_info']; ?>
+    </div>
+    <?php unset($_SESSION['debug_info']); endif; ?>
+
+</div>
+<?php endif; ?>
 <?php
 // Start session
 session_start();

@@ -137,7 +137,7 @@ function deleteAppointment($conn) {
         
     } catch (Exception $e) {
         // Rollback the transaction on error
-        if ($conn->connect_error) {
+        if (isset($conn) && !$conn->connect_error) {
             $conn->rollback();
         }
         
@@ -255,7 +255,7 @@ function bookAppointment($conn, $data) {
         
     } catch (Exception $e) {
         // Rollback the transaction on error
-        if ($conn->connect_error) {
+        if (isset($conn) && !$conn->connect_error) {
             $conn->rollback();
         }
         

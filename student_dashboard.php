@@ -138,25 +138,45 @@ $student_name = $_SESSION['user_name'] ?? 'Student';
                         }
                     }
                 })
-                .catch(error => console.error('Error loading appointment:', error));
+                .catch(error => {
+                    console.error('Error loading appointment:', error);
+                    alert('Failed to load your appointment information. Please try refreshing the page.');
+                });
             
             // Delete appointment
             document.getElementById('deleteAppointmentBtn').addEventListener('click', function() {
                 if (confirm('Are you sure you want to delete your current appointment?')) {
                     fetch('backend/student_api.php?action=delete_appointment', {
-                        method: 'DELETE'
+                        method: 'DELETE',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        // Check if the response is JSON
+                        const contentType = response.headers.get("content-type");
+                        if (contentType && contentType.indexOf("application/json") !== -1) {
+                            return response.json();
+                        } else {
+                            // If not JSON, get the text and throw error
+                            return response.text().then(text => {
+                                throw new Error('Response is not JSON: ' + text);
+                            });
+                        }
+                    })
                     .then(data => {
                         if (data.success) {
                             alert('Appointment deleted successfully.');
                             // Reload the page to reflect changes
                             window.location.reload();
                         } else {
-                            alert('Error: ' + data.error);
+                            alert('Error: ' + (data.error || 'Unknown error occurred'));
                         }
                     })
-                    .catch(error => console.error('Error deleting appointment:', error));
+                    .catch(error => {
+                        console.error('Error deleting appointment:', error);
+                        alert('An error occurred while deleting the appointment. Please try again or contact support.');
+                    });
                 }
             });
         });
